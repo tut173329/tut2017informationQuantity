@@ -80,6 +80,9 @@ public class Frequencer implements FrequencerInterface{
         
         // Sorting is not implmented yet.
         
+        quick_sort(0, space.length - 1);
+        
+        /*
         for(int i = 0; i < space.length; i++)
         {
             for(int j = 0; j < space.length; j++)
@@ -92,8 +95,32 @@ public class Frequencer implements FrequencerInterface{
                 }
             }
         }
+        */
         
         printSuffixArray();
+    }
+    
+    private void quick_sort(int left, int right) {
+        if (left >= right) {
+            return;
+        }
+        
+        int pivot = left;//(left + right) / 2; //suffixArray[(left+right)/2];
+        int l = left, r = right, tmp;
+        
+        while(l <= r) {
+            while(suffixCompare(l, pivot) < 0) { l++; }
+            while(suffixCompare(r, pivot) > 0) { r--; }
+            if (l <= r) {
+                tmp = suffixArray[l];
+                suffixArray[l] = suffixArray[r];
+                suffixArray[r] = tmp;
+                l++;
+                r--;
+            }
+        }
+        quick_sort(left, r);  // ピボットより左側をクイックソート
+        quick_sort(l, right); // ピボットより右側をクイックソート
     }
     
     private int targetCompare(int i, int start, int end) {
@@ -131,14 +158,24 @@ public class Frequencer implements FrequencerInterface{
         // not implemented yet;
         // For "Ho", it will return 5 for "Hi Ho Hi Ho".
         // For "Ho ", it will return 6 for "Hi Ho Hi Ho".
-        int i;
         
+        int index = binarySearch(start, end);
+        
+        if(index == -1)return 0;
+        
+        for(int i = index; i >= 0; i--){
+            if(targetCompare(i, start, end) == -1)return i + 1;
+        }
+        
+        
+        /*
         for(i = 0; i < suffixArray.length; i++)
         {
             if(targetCompare(i, start, end) == 0)return i;
         }
+        */
         
-        return -1;
+        return 0;
     }
     
     private int subByteEndIndex(int start, int end) {
@@ -146,9 +183,12 @@ public class Frequencer implements FrequencerInterface{
         // not implemented yet
         // For "Ho", it will return 7 for "Hi Ho Hi Ho".
         // For "Ho ", it will return 7 for "Hi Ho Hi Ho".
-        int i;
+     
+        int index = binarySearch(start, end);
         
-        for(i = 0; i < suffixArray.length; i++)
+        if(index == -1)return 0;
+        
+        for(int i = index; i <= mySpace.length; i++)
         {
             if(targetCompare(i, start, end) == 1)return i;
         }
@@ -181,6 +221,24 @@ public class Frequencer implements FrequencerInterface{
         if(myTarget.length>0) targetReady = true;
     }
     
+    public int binarySearch(int start, int end) {
+        int Left = 0;
+        int Right = mySpace.length - 1;
+        
+        do {
+            int center = (Left + Right) / 2;
+            
+            if (targetCompare(center, start, end) == 0) {
+                return center;
+            } else if (targetCompare(center, start, end) == -1){
+                Left = center + 1; //真ん中の一つ右側を左端とする
+            } else {
+                Right = center - 1;
+            }
+        } while (Left <= Right);
+        
+        return -1;
+    }
     
     public int frequency() {
         /*
@@ -217,8 +275,11 @@ public class Frequencer implements FrequencerInterface{
         Frequencer frequencerObject;
         try {
             frequencerObject = new Frequencer();
-            frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
-            frequencerObject.setTarget("Ho".getBytes());
+            frequencerObject.setSpace("gkngjjgvnjshghdmdjasfcjamjfaihuhimovamsvhsimfcjfdscngvjgfxcmsfsmgnvmcfkfjmgnvcfgmhsvgh".getBytes());
+            frequencerObject.setTarget("a".getBytes());
+            //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
+            //frequencerObject.setTarget("H".getBytes());
+            
             int result = frequencerObject.frequency();
             System.out.print("Freq = "+ result+" ");
             
