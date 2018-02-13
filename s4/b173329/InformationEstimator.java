@@ -51,6 +51,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
         
         if(targetReady == false) return (double) 0.0;
         if(spaceReady == false) return Double.MAX_VALUE;
+        if(myTarget.length == 0) return 0.0;
         
         myFrequencer.setTarget(myTarget);
         
