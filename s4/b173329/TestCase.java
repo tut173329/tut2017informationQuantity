@@ -96,8 +96,8 @@ public class TestCase {
 	    value = myObject.estimation();
 	    System.out.println(">01 "+value);
 	    myObject.setTarget("0123".getBytes());
-	    value = myObject.estimation();
-	    System.out.println(">0123 "+value);
+        value = myObject.estimation();
+        System.out.println(">0123 "+value);
 	    myObject.setTarget("00".getBytes());
 	    value = myObject.estimation();
 	    System.out.println(">00 "+value);

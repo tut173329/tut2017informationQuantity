@@ -25,21 +25,21 @@ public class Frequencer implements FrequencerInterface{
     int [] suffixArray;
     // The variable, "suffixArray" is the sorted array of all suffixes of mySpace.
     // Each suffix is expressed by a interger, which is the starting position in mySpace. // The following is the code to print the variable
-    private void printSuffixArray()
-    {
-        if(spaceReady)
-        {
-            for(int i = 0; i < mySpace.length; i++)
-            {
-                int s = suffixArray[i];
-                for(int j = s; j < mySpace.length; j++)
-                {
-                    System.out.write(mySpace[j]);
-                }
-                System.out.write('\n');
-            }
-        }
-    }
+//    private void printSuffixArray()
+//    {
+//        if(spaceReady)
+//        {
+//            for(int i = 0; i < mySpace.length; i++)
+//            {
+//                int s = suffixArray[i];
+//                for(int j = s; j < mySpace.length; j++)
+//                {
+//                    System.out.write(mySpace[j]);
+//                }
+//                System.out.write('\n');
+//            }
+//        }
+//    }
     
     private int suffixCompare(int i, int j) {
         // comparing two suffixes by dictionary order.
@@ -77,9 +77,7 @@ public class Frequencer implements FrequencerInterface{
         {
             suffixArray[i] = i;
         }
-        
-        // Sorting is not implmented yet.
-        
+
         quick_sort(0, space.length - 1);
         
         /*
@@ -95,9 +93,8 @@ public class Frequencer implements FrequencerInterface{
                 }
             }
         }
-        */
-        
         printSuffixArray();
+         */
     }
     
     private void quick_sort(int left, int right) {
@@ -105,7 +102,7 @@ public class Frequencer implements FrequencerInterface{
             return;
         }
         
-        int pivot = left;//(left + right) / 2; //suffixArray[(left+right)/2];
+        int pivot = left; //(left + right) / 2;
         int l = left, r = right, tmp;
         
         while(l <= r) {
@@ -275,8 +272,8 @@ public class Frequencer implements FrequencerInterface{
         Frequencer frequencerObject;
         try {
             frequencerObject = new Frequencer();
-            frequencerObject.setSpace("gkngjjgvnjshghdmdjasfcjamjfaihuhimovamsvhsimfcjfdscngvjgfxcmsfsmgnvmcfkfjmgnvcfgmhsvgh".getBytes());
-            frequencerObject.setTarget("a".getBytes());
+            frequencerObject.setSpace("3210321001230123".getBytes());
+            frequencerObject.setTarget("01".getBytes());
             //frequencerObject.setSpace("Hi Ho Hi Ho".getBytes());
             //frequencerObject.setTarget("H".getBytes());
             
