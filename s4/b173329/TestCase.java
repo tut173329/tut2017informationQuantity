@@ -78,6 +78,25 @@ public class TestCase {
         System.out.print("SPACE's length is zero. It returns " + freq5);
         if(0 == freq5) { System.out.println("OK"); } else {System.out.println("WRONG"); }
         
+        FrequencerInterface  myObject6;
+        int freq6;
+        myObject6 = new s4.b173329.Frequencer();
+        myObject6.setSpace(null);
+        myObject6.setTarget("H".getBytes());
+        freq6 = myObject6.frequency();
+        System.out.print("space is null. It returns " + freq6);
+        if(0 == freq6) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+        
+        FrequencerInterface  myObject7;
+        int freq7;
+        myObject7 = new s4.b173329.Frequencer();
+        myObject7.setSpace("Hi Ho Hi Ho".getBytes());
+        myObject7.setTarget(null);
+        freq7 = myObject7.frequency();
+        System.out.print("target is null. It returns " + freq7);
+        if(-1 == freq7) { System.out.println("OK"); } else {System.out.println("WRONG"); }
+
+        
 	}
 	catch(Exception e) {
 	    System.out.println("Exception occurred: STOP");
@@ -109,7 +128,8 @@ public class TestCase {
         //myObject2.setTarget("0".getBytes());
         value2 = myObject2.estimation();
         System.out.print("the TARGET is not set. It returns 0.0. ");
-        if(0.0 == value2) { System.out.println("value = " + value2 + "OK"); } else {System.out.println("WRONG"); }
+        if(0.0 == value2) { System.out.println("value = " + value2 + "OK"); }
+        else {System.out.println("WRONG"); }
         
         InformationEstimatorInterface myObject3;
         double value3;
@@ -118,7 +138,8 @@ public class TestCase {
         myObject3.setTarget("".getBytes());
         value3 = myObject3.estimation();
         System.out.print("TARGET's length is zero. It returns 0.0. ");
-        if(0.0 == value3) { System.out.println("value = " + value3 + "OK"); } else {System.out.println("WRONG"); }
+        if(0.0 == value3) { System.out.println("value = " + value3 + "OK"); }
+        else {System.out.println("WRONG"); }
         
         InformationEstimatorInterface myObject4;
         double value4;
@@ -127,17 +148,48 @@ public class TestCase {
         myObject4.setTarget("0".getBytes());
         value4 = myObject4.estimation();
         System.out.print("the true value is finite. It returns Double.MAX_VALUE. ");
-        if(Double.MAX_VALUE == value4) { System.out.println("value = " + value4 + "OK"); } else {System.out.println("WRONG"); }
+        if(Double.MAX_VALUE == value4) { System.out.println("value = " + value4 + "OK"); }
+        else {System.out.println("WRONG"); }
         
         InformationEstimatorInterface myObject5;
         double value5;
         myObject5 = new s4.b173329.InformationEstimator();
         //myObject5.setSpace("3210321001230123".getBytes());
         myObject5.setTarget("0".getBytes());
-        value5 = myObject4.estimation();
+        value5 = myObject5.estimation();
         System.out.print("SPACE is not set. It returns Double.MAX_VALUE. ");
-        if(Double.MAX_VALUE == value5) { System.out.println("value = " + value5 + "OK"); } else {System.out.println("WRONG"); }
+        if(Double.MAX_VALUE == value5) { System.out.println("value = " + value5 + "OK"); }
+        else {System.out.println("WRONG"); }
+        
+        InformationEstimatorInterface myObject6;
+        double value6;
+        myObject6 = new s4.b173329.InformationEstimator();
+        myObject6.setSpace(null);
+        myObject6.setTarget("0".getBytes());
+        value6 = myObject6.estimation();
+        System.out.print("SPACE is null. It returns Double.MAX_VALUE. ");
+        if(Double.MAX_VALUE == value6) { System.out.println("value = " + value5 + "OK"); }
+        else {System.out.println("WRONG"); }
 
+        InformationEstimatorInterface myObject7;
+        double value7;
+        myObject7 = new s4.b173329.InformationEstimator();
+        myObject7.setSpace("3210321001230123".getBytes());
+        myObject7.setTarget(null);
+        value7 = myObject7.estimation();
+        System.out.print("the TARGET is null. It returns 0.0. ");
+        if(0.0 == value7) { System.out.println("value = " + value7 + "OK"); }
+        else {System.out.println("WRONG"); }
+        
+        InformationEstimatorInterface myObject8;
+        double value8;
+        myObject8 = new s4.b173329.InformationEstimator();
+        myObject8.setSpace("".getBytes());
+        myObject8.setTarget("0".getBytes());
+        value8 = myObject8.estimation();
+        System.out.print("space's length is zero. It returns Double.MAX_VALUE. ");
+        if(Double.MAX_VALUE == value8) { System.out.println("value = " + value8 + "OK"); }
+        else {System.out.println("WRONG"); }
 
     
     

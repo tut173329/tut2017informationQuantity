@@ -70,6 +70,7 @@ public class Frequencer implements FrequencerInterface{
             
     public void setSpace(byte []space) {
         mySpace = space;
+        if(mySpace == null)return;
         if(mySpace.length>0) spaceReady = true;
         suffixArray = new int[space.length];
         
@@ -142,10 +143,11 @@ public class Frequencer implements FrequencerInterface{
         
         for(int k = 0; k < n; k++)
         {
-            if(mySpace[si+k] > myTarget[start+k]) return 1;
-            if(mySpace[si+k] < myTarget[start+k]) return -1;
+            if(si + k <= mySpace.length - 1){
+                if(mySpace[si+k] > myTarget[start+k]) return 1;
+                if(mySpace[si+k] < myTarget[start+k]) return -1;
+            }else return -1;
         }
-        
         return 0;
     }
     
@@ -218,12 +220,13 @@ public class Frequencer implements FrequencerInterface{
         //inspection code
 //        for(int k=start;k<end;k++) { System.out.write(myTarget[k]); }
 //        System.out.printf(": first=%d last1=%d\n", first, last1);
-        
+//        
         return last1 - first;
     }
     
     public void setTarget(byte [] target) {
         myTarget = target;
+        if(myTarget == null)return;
         if(myTarget.length>0) targetReady = true;
     }
     

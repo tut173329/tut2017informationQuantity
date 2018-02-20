@@ -40,10 +40,15 @@ public class InformationEstimator implements InformationEstimatorInterface{
         return  - Math.log10((double) freq / (double) mySpace.length)/ Math.log10((double) 2.0);
     }
     
-    public void setTarget(byte [] target) { myTarget = target; if(target.length>0) targetReady = true;}
+    public void setTarget(byte [] target) {
+        myTarget = target;
+        if(myTarget == null)return;
+        if(target.length>0) targetReady = true;}
     public void setSpace(byte []space) {
         myFrequencer = new Frequencer();
-        mySpace = space; myFrequencer.setSpace(space);
+        mySpace = space;
+        if(mySpace == null)return;
+        myFrequencer.setSpace(space);
         spaceReady = true;
     }
     
@@ -52,6 +57,7 @@ public class InformationEstimator implements InformationEstimatorInterface{
         if(targetReady == false) return (double) 0.0;
         if(spaceReady == false) return Double.MAX_VALUE;
         if(myTarget.length == 0) return 0.0;
+        if(mySpace.length == 0) return Double.MAX_VALUE;
         
         myFrequencer.setTarget(myTarget);
         
