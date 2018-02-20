@@ -83,11 +83,11 @@ public class Frequencer implements FrequencerInterface{
 //        }
         
         quick_sort(0, space.length - 1);
-        
+//        
 //        for(int i = 0;i < suffixArray.length-1; i++){
 //            System.out.println(suffixArray[i]);
 //        }
-        
+//        
 //        for(int i = 0; i < space.length; i++)
 //        {
 //            for(int j = 0; j < space.length; j++)
@@ -137,7 +137,7 @@ public class Frequencer implements FrequencerInterface{
         
         int si = suffixArray[i];
         int targetLength = end - start;
-        if(targetLength > mySpace.length - si)return -1;
+        //if(targetLength > mySpace.length - si)return -1;
         int n = targetLength;
         
         for(int k = 0; k < n; k++)
@@ -194,7 +194,9 @@ public class Frequencer implements FrequencerInterface{
         if(index != -1){
             for(int i = index; i < mySpace.length; i++)
             {
+                //System.out.println(targetCompare(i, start, end));
                 if(targetCompare(i, start, end) == 1)return i;
+                
             }
         }
         return suffixArray.length;
@@ -214,8 +216,8 @@ public class Frequencer implements FrequencerInterface{
         int last1 = subByteEndIndex(start, end);
         
         //inspection code
-        //for(int k=start;k<end;k++) { System.out.write(myTarget[k]); }
-        //System.out.printf(": first=%d last1=%d\n", first, last1);
+//        for(int k=start;k<end;k++) { System.out.write(myTarget[k]); }
+//        System.out.printf(": first=%d last1=%d\n", first, last1);
         
         return last1 - first;
     }
